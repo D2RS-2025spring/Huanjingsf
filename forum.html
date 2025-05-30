@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北旅游交流大厅 - 分享您的荆楚之旅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0.5rem 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .intro {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .forum-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .tab-btn.active {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .comment-form {
+            margin-bottom: 2rem;
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .form-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .comments {
+            margin-top: 2rem;
+        }
+        
+        .comment {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .comment-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .comment-content {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .comment-reply {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .reply-btn {
+            background-color: transparent;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.5rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .page-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .page-link:hover, .page-link.active {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">湖北之旅</div>
+        <div class="slogan">探索荆楚大地，品味长江文明</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="recommend.html">旅游推荐</a></li>
+            <li><a href="food.html">特色美食</a></li>
+            <li><a href="forum.html" class="active">交流大厅</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section class="section">
+            <h1 class="section-title">湖北旅游交流大厅</h1>
+            <div class="intro">
+                <p>欢迎来到湖北旅游交流大厅！您可以在这里分享您的旅游经验、提问或回答其他游客的问题。我们不会收集任何个人信息，请文明交流。</p>
+                <p>请选择讨论主题：</p>
+            </div>
+            
+            <div class="forum-tabs">
+                <button class="tab-btn active" data-tab="general">综合讨论</button>
+                <button class="tab-btn" data-tab="itinerary">行程规划</button>
+                <button class="tab-btn" data-tab="transportation">交通住宿</button>
+                <button class="tab-btn" data-tab="tips">旅行小贴士</button>
+            </div>
+            
+            <div class="tab-content active" id="general">
+                <div class="comment-form">
+                    <h3 class="form-title">发表新话题</h3>
+                    <form id="new-topic-form">
+                        <div class="form-group">
+                            <label for="topic-title">标题</label>
+                            <input type="text" id="topic-title" class="form-control" placeholder="请输入话题标题" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="topic-content">内容</label>
+                            <textarea id="topic-content" class="form-control" placeholder="请输入您想讨论的内容..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发布话题</button>
+                    </form>
+                </div>
+                
+                <div class="comments">
+                    <h3>最新话题</h3>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">旅行爱好者</span>
+                            <span class="comment-date">2023-10-15 14:30</span>
+                        </div>
+                        <h4>武汉黄鹤楼的最佳游览时间是什么时候？</h4>
+                        <div class="comment-content">
+                            <p>计划下个月去武汉旅游，想请教一下黄鹤楼什么时间去人比较少？早上还是傍晚比较好？门票需要提前预约吗？</p>
+                        </div>
+                        <div class="comment-reply">
+                            <button class="reply-btn">回复</button>
+                            <div class="replies" style="display: none;">
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="comment-author">武汉通</span>
+                                        <span class="comment-date">2023-10-15 16:45</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>建议早上8点开门就去，人比较少，光线也好适合拍照。门票可以现场买，但节假日建议提前在官网预约。傍晚虽然可以看夕阳，但旅行团比较多。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">摄影达人</span>
+                            <span class="comment-date">2024-10-12 09:15</span>
+                        </div>
+                        <h4>分享武当山金顶的日出美景</h4>
+                        <div class="comment-content">
+                            <p>上周去了武当山，凌晨3点开始爬山，5点多到达金顶，云海日出的景象太震撼了！建议体力好的朋友一定要体验一次。山上温度低，记得带外套。</p>
+                            <p><img src="https://n.sinaimg.cn/sinacn09/2/w1920h1282/20180920/50bc-hikxxna3562519.jpg" alt="武当山日出" style="max-width: 100%; margin-top: 1rem; border-radius: 4px;"></p>
+                        </div>
+                        <div class="comment-reply">
+                            <button class="reply-btn">回复</button>
+                            <div class="replies" style="display: none;">
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="comment-author">登山小白</span>
+                                        <span class="comment-date">2024-10-12 11:20</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>照片太美了！请问从山脚爬到金顶需要多长时间？有没有缆车可以坐？</p>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="comment-author">摄影达人</span>
+                                        <span class="comment-date">2024-10-12 13:45</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>有缆车可以坐到琼台，然后步行约1小时到金顶。如果全程爬山，从南岩宫出发大约需要3-4小时。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">美食探索者</span>
+                            <span class="comment-date">2024-10-10 18:30</span>
+                        </div>
+                        <h4>求推荐武汉地道的热干面店铺</h4>
+                        <div class="comment-content">
+                            <p>第一次来武汉，想尝尝正宗的热干面，不要游客店那种。本地人常去的老字号有哪些？最好在汉口这边。</p>
+                        </div>
+                        <div class="comment-reply">
+                            <button class="reply-btn">回复</button>
+                            <div class="replies" style="display: none;">
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="comment-author">老武汉</span>
+                                        <span class="comment-date">2024-10-10 20:15</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>推荐你去"罗氏热干面"，在利济北路，是几十年的老店了，芝麻酱特别香。还有"蔡林记"虽然名气大，但分店品质参差不齐，建议去老店。</p>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="comment-author">吃货一枚</span>
+                                        <span class="comment-date">2024-10-11 09:05</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>补充一个"老田记面馆"，在江汉路附近的小巷子里，环境一般但味道超赞，早上排队的基本都是本地人。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">下一页</a>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="itinerary">
+                <div class="comment-form">
+                    <h3 class="form-title">行程规划咨询</h3>
+                    <form id="itinerary-form">
+                        <div class="form-group">
+                            <label for="travel-days">计划游玩天数</label>
+                            <input type="number" id="travel-days" class="form-control" placeholder="例如：3" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="travel-month">计划出行月份</label>
+                            <input type="text" id="travel-month" class="form-control" placeholder="例如：11月" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itinerary-content">具体问题</label>
+                            <textarea id="itinerary-content" class="form-control" placeholder="请详细描述您的行程规划需求..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">提交咨询</button>
+                    </form>
+                </div>
+                
+                <div class="comments">
+                    <h3>行程规划讨论</h3>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">家庭出游</span>
+                            <span class="comment-date">2023-10-14 10:20</span>
+                        </div>
+                        <h4>带老人小孩5天4晚湖北行程求建议</h4>
+                        <div class="comment-content">
+                            <p>计划11月带父母(60多岁)和孩子(8岁)去湖北玩，不想太累，主要想看看武汉、三峡和武当山，求推荐适合的行程安排和注意事项。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">背包客</span>
+                            <span class="comment-date">2024-10-08 15:40</span>
+                        </div>
+                        <h4>湖北7日深度游路线分享</h4>
+                        <div class="comment-content">
+                            <p>刚结束湖北7日游，路线：武汉(2天)-宜昌三峡(2天)-恩施(3天)，性价比超高，特别是恩施大峡谷和腾龙洞非常震撼。详细攻略和花费可以私信我。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="transportation">
+                <div class="comment-form">
+                    <h3 class="form-title">交通住宿咨询</h3>
+                    <form id="transportation-form">
+                        <div class="form-group">
+                            <label for="transport-city">城市</label>
+                            <input type="text" id="transport-city" class="form-control" placeholder="例如：武汉" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transport-content">具体问题</label>
+                            <textarea id="transport-content" class="form-control" placeholder="请详细描述您的交通或住宿问题..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">提交咨询</button>
+                    </form>
+                </div>
+                
+                <div class="comments">
+                    <h3>交通住宿讨论</h3>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">自由行者</span>
+                            <span class="comment-date">2023-10-13 11:10</span>
+                        </div>
+                        <h4>武汉到武当山的最佳交通方式</h4>
+                        <div class="comment-content">
+                            <p>请问从武汉去武当山，高铁和长途汽车哪个更方便？到了武当山站后怎么去景区？住宿推荐山上还是山下？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">酒店达人</span>
+                            <span class="comment-date">2023-10-05 20:35</span>
+                        </div>
+                        <h4>分享武汉性价比高的住宿区域</h4>
+                        <div class="comment-content">
+                            <p>多次去武汉总结的住宿建议：想方便逛景点住武昌区(近黄鹤楼、东湖)；想体验市井生活住江汉路附近；预算有限可以看看光谷的青年旅舍。具体酒店推荐可以问我。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tips">
+                <div class="comment-form">
+                    <h3 class="form-title">分享旅行小贴士</h3>
+                    <form id="tips-form">
+                        <div class="form-group">
+                            <label for="tips-title">标题</label>
+                            <input type="text" id="tips-title" class="form-control" placeholder="例如：神农架徒步注意事项" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tips-content">内容</label>
+                            <textarea id="tips-content" class="form-control" placeholder="请分享您的实用旅行建议..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">分享贴士</button>
+                    </form>
+                </div>
+                
+                <div class="comments">
+                    <h3>旅行小贴士</h3>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">户外爱好者</span>
+                            <span class="comment-date">2023-10-09 08:45</span>
+                        </div>
+                        <h4>神农架秋季徒步装备清单</h4>
+                        <div class="comment-content">
+                            <p>刚结束神农架徒步，分享必备装备：防水登山鞋、冲锋衣(山区天气多变)、登山杖、头灯、保温水壶、常用药品。10月后早晚温差大，要带保暖衣物。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">美食家</span>
+                            <span class="comment-date">2023-10-03 17:25</span>
+                        </div>
+                        <h4>湖北特产购买指南</h4>
+                        <div class="comment-content">
+                            <p>推荐几个正宗的湖北特产购买地：武汉周黑鸭(认准正规门店)、孝感麻糖(老字号品牌)、洪湖莲藕粉(景区买容易贵，建议超市)、恩施玉露茶(当地茶庄)。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 湖北之旅 - 探索荆楚大地，品味长江文明</p>
+        <p>联系我们：1730277638@qq.com</p>
+    </footer>
+
+    <script>
+        // 标签页切换
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // 移除所有按钮和内容的active类
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // 添加active类到当前按钮和内容
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // 回复按钮功能
+        const replyBtns = document.querySelectorAll('.reply-btn');
+        replyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const replies = btn.nextElementSibling;
+                if (replies.style.display === 'none' || !replies.style.display) {
+                    replies.style.display = 'block';
+                    btn.textContent = '收起回复';
+                } else {
+                    replies.style.display = 'none';
+                    btn.textContent = '回复';
+                }
+            });
+        });
+        
+        // 表单提交
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('感谢您的参与！由于是示例网站，内容不会被实际提交。');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
