@@ -12,7 +12,7 @@ CUSTOM_COLORS = [
     '#EF5B49', '#D73C47', '#AD243E', '#7F163C', 
     '#440D2C'
 ]
-FIGURE_SIZE = (20, 12)  # 优化宽高比
+FIGURE_SIZE = (20, 12)  # 优化宽高
 POINT_SIZE_RANGE = (20, 180)
 COLOR_RANGE = (0, 2.5)
 FONT_CONFIG = {
