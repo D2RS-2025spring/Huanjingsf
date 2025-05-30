@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北特色美食 - 品味荆楚味道</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0.5rem 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .intro {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .food-category {
+            margin-bottom: 3rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .food-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .food-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .food-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .food-card:hover .food-img img {
+            transform: scale(1.05);
+        }
+        
+        .food-info {
+            padding: 1.5rem;
+        }
+        
+        .food-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .food-origin {
+            display: inline-block;
+            background-color: #f1f1f1;
+            color: #666;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .food-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .food-history {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 1rem;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">湖北之旅</div>
+        <div class="slogan">探索荆楚大地，品味长江文明</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="recommend.html">旅游推荐</a></li>
+            <li><a href="food.html" class="active">特色美食</a></li>
+            <li><a href="forum.html">交流大厅</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section class="section">
+            <h1 class="section-title">湖北特色美食</h1>
+            <div class="intro">
+                <p>湖北菜又称鄂菜，是中国十大菜系之一，以淡水鱼鲜和蒸菜煨汤著称，讲究鲜、嫩、柔、滑、爽，富有浓厚的江南水乡特色。湖北菜注重刀工，擅长蒸、煨、炸、烧、炒等烹调方法，具有滚、烂、鲜、醇、香、嫩、足七美。</p>
+                <p>湖北各地美食各具特色：武汉小吃闻名全国，荆州鱼糕历史悠久，宜昌肥鱼鲜美无比，襄阳牛肉面风味独特，恩施土家菜别具一格。下面为您介绍湖北最具代表性的特色美食。</p>
+            </div>
+            
+            <div class="food-category">
+                <h2 class="category-title">武汉特色小吃</h2>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://qcloud.dpfile.com/pc/S22Jv8xl7OFTnqUFKFFQRIEPVBk4sn1Z3sYivl9uZru-yaTludb9bS1xg1tD4Kys.jpg" alt="热干面">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">热干面</h3>
+                            <span class="food-origin">武汉</span>
+                            <p class="food-desc">武汉最具代表性的小吃，面条劲道，芝麻酱香浓，配以萝卜丁、葱花等配料，香气扑鼻，回味无穷。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>热干面起源于20世纪30年代，由汉口长堤街一位名叫李包的食贩首创，现已成为武汉人"过早"的首选。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://img95.699pic.com/video_cover/12/70/15/b_ad0cVTPXeSr01636127015.jpg!/fw/820" alt="三鲜豆皮">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">三鲜豆皮</h3>
+                            <span class="food-origin">武汉</span>
+                            <p class="food-desc">以绿豆、大米混合磨浆摊皮，包入糯米、肉丁、香菇、笋丁等馅料煎制而成，外脆内软，香气四溢。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>三鲜豆皮起源于武汉老通城酒楼，已有近百年历史，是武汉传统名点之一。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://qcloud.dpfile.com/pc/MZ_qdtN25UyBTBVAnY-dWXmAUURprx-prpHBT5NnvP2ztIovP0BrKDTdf2ycVz5i.jpg" alt="武昌鱼">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">武昌鱼</h3>
+                            <span class="food-origin">武汉</span>
+                            <p class="food-desc">"才饮长沙水，又食武昌鱼"，清蒸武昌鱼是湖北传统名菜，肉质细嫩，味道鲜美，营养丰富。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>武昌鱼因产于武昌梁子湖而得名，三国时期就已闻名，毛泽东诗词使其更加声名远播。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-category">
+                <h2 class="category-title">荆州特色美食</h2>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://5b0988e595225.cdn.sohucs.com/images/20180116/4ac7d556def44e5580fb5d352e59f880.jpeg" alt="荆州鱼糕">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">荆州鱼糕</h3>
+                            <span class="food-origin">荆州</span>
+                            <p class="food-desc">以鲜鱼去刺去皮，剁成肉泥，加蛋清、淀粉等蒸制而成，色泽洁白，口感细腻，鱼香浓郁。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>相传为春秋战国时期楚国宫廷菜，已有2000多年历史，是荆州传统名菜。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://n.sinaimg.cn/sinakd10116/25/w1000h625/20210825/74f2-6b9dfb7d20847b2aa1a071c623cdfc22.jpg" alt="公安牛肉">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">公安牛肉</h3>
+                            <span class="food-origin">荆州公安县</span>
+                            <p class="food-desc">选用当地黄牛肉，配以秘制调料炖煮而成，肉质酥烂，汤汁浓郁，香辣可口。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>起源于公安县，已有数百年历史，是当地百姓招待贵客的传统菜肴。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://qcloud.dpfile.com/pc/4eTZKEdnMO4OiawwD4i2DWNSdwB4LMDJ1uvL7uDe4uOhow6pX0gWG-2v4NsvChrI.jpg" alt="洪湖藕汤">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">洪湖藕汤</h3>
+                            <span class="food-origin">荆州洪湖</span>
+                            <p class="food-desc">选用洪湖莲藕和新鲜排骨煨制，汤色奶白，藕香浓郁，排骨酥烂，是湖北传统煨汤代表。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>洪湖莲藕品质优良，明清时期就是贡品，藕汤是湖北人家家户户都会做的家常菜。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-category">
+                <h2 class="category-title">恩施土家风味</h2>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://b0.bdstatic.com/ugc/IsVyR0tkbi2TIqya2ghr4w89f79d480eea98926afc0c72decddccb.jpg" alt="土家腊肉">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">土家腊肉</h3>
+                            <span class="food-origin">恩施</span>
+                            <p class="food-desc">土家族传统美食，选用当地土猪肉，经腌制、烟熏而成，色泽红亮，肉质紧实，香味独特。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>土家人为保存肉类发明的传统方法，已有上千年历史，是土家族待客的上等菜肴。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://pic3.zhimg.com/v2-d115789e3a56c05f1798a98160669bce_r.jpg" alt="合渣">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">合渣</h3>
+                            <span class="food-origin">恩施</span>
+                            <p class="food-desc">土家族特色菜，将黄豆磨浆不过滤，连渣带浆煮开，加入青菜等配料，清香爽口，营养丰富。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>土家族传统家常菜，源于生活智慧，既节约食材又美味可口，被称为"懒豆腐"。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://pic5.40017.cn/03/000/1d/7a/rB5oQF2f0mSAQXgFAAUSgBBR5bQ018_750x_00.jpg" alt="摔碗酒">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">摔碗酒</h3>
+                            <span class="food-origin">恩施</span>
+                            <p class="food-desc">土家族待客礼仪，客人饮完米酒后将碗摔碎，寓意"岁岁平安"，场面热烈，气氛欢快。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>源于古代土家族将士出征前的壮行酒，现已成为土家族热情好客的象征。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-category">
+                <h2 class="category-title">其他地区特色</h2>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://img1.baidu.com/it/u=1106287,2299870025&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067" alt="襄阳牛肉面">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">襄阳牛肉面</h3>
+                            <span class="food-origin">襄阳</span>
+                            <p class="food-desc">襄阳特色早餐，面条劲道，牛肉酥烂，汤头浓郁，配以豆芽、葱花等配料，香辣可口。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>起源于明清时期，融合了北方牛肉面和南方口味特点，是襄阳人最爱的早餐。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.09075e27104c251c7bfe194bccfca61b?rik=aUTK0SFrLv1RNQ&riu=http%3a%2f%2fimg.cjyun.org%2fa%2f10008%2f202208%2f7d45a773e7e9b36cd892c6d6cdb4a675.jpeg&ehk=P8F9VnRnwU7uiAc4rd2bwkhzHaDogY9gv2SLhfjAbaw%3d&risl=&pid=ImgRaw&r=0" alt="宜昌肥鱼">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">宜昌肥鱼</h3>
+                            <span class="food-origin">宜昌</span>
+                            <p class="food-desc">长江特有鱼种，肉质细嫩，脂肪丰富，以清汤火锅方式烹制最为鲜美，汤色奶白，营养丰富。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>宜昌长江段特有的鱼类，自古就是当地名贵食材，现已成为宜昌美食代表。
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-img">
+                            <img src="https://pic.nximg.cn/file/20191216/25788148_114540933080_2.jpg" alt="沔阳三蒸">
+                        </div>
+                        <div class="food-info">
+                            <h3 class="food-name">沔阳三蒸</h3>
+                            <span class="food-origin">仙桃</span>
+                            <p class="food-desc">湖北传统名菜，包括蒸鱼、蒸肉、蒸蔬菜，体现了湖北菜"无菜不蒸"的特点，原汁原味。</p>
+                            <div class="food-history">
+                                <strong>历史渊源：</strong>起源于沔阳(今仙桃)地区，已有数百年历史，是湖北蒸菜的代表作。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 湖北之旅 - 探索荆楚大地，品味长江文明</p>
+        <p>联系我们：1730277638@qq.com</p>
+    </footer>
+</body>
+</html>
