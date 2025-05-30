@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北旅游 - 荆楚文化之旅</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        /* 基础样式 */
+        body {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* 导航栏样式 */
+        nav {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul li {
+            position: relative;
+            margin: 0 5px;
+        }
+        
+        nav ul li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 18px 25px;
+            display: block;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul li a:hover::before {
+            width: 70%;
+        }
+        
+        nav ul li a.active {
+            color: white;
+            background-color: rgba(231, 76, 60, 0.2);
+        }
+        
+        nav ul li a.active::before {
+            width: 70%;
+            background-color: #e74c3c;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .slogan {
+            font-size: 1.4rem;
+            font-style: italic;
+            position: relative;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+        
+        /* 主内容区 */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #e74c3c, transparent);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 500px;
+            background: url('https://img95.699pic.com/photo/50028/4035.jpg_wh860.jpg') center/cover;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            border-radius: 10px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* 卡片设计 */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 1.8rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #e74c3c;
+        }
+        
+        .card-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #e74c3c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                padding: 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul li a {
+                padding: 15px 20px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .slogan {
+                font-size: 1.1rem;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        nav ul li {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        nav ul li:nth-child(1) { animation-delay: 0.1s; }
+        nav ul li:nth-child(2) { animation-delay: 0.2s; }
+        nav ul li:nth-child(3) { animation-delay: 0.3s; }
+        nav ul li:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    
+    
+    <!-- 主内容区 -->
+    <div class="container">
+        <section class="section">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>湖北之旅</h1>
+                    <p>长江之滨，千湖之省，感受荆楚文化的独特魅力</p>
+                    <a href="recommend.html" class="btn">探索湖北</a>
+                </div>
+            </div>
+            
+            <h2 class="section-title">湖北概况</h2>
+            <p>地理位置：湖北位于中国中部腹地，长江中游，因地处洞庭湖以北而得名。这里素有"九省通衢"之称，是中国地理中心和水陆交通枢纽。
+
+                全省面积18.59万平方公里，长江自西向东横贯全省1061公里，与汉江交汇于武汉，形成壮观的"两江交汇"景观。
+                
+                湖北拥有"千湖之省"的美誉，境内湖泊星罗棋布，包括洪湖、梁子湖等著名湖泊，水域面积占全省总面积十分之一。</p>
+            <br>
+
+            <p>历史文化：湖北是楚文化的发祥地，孕育了屈原、王昭君、陆羽、李时珍等历史名人。楚辞《离骚》在此诞生，茶圣陆羽在此著《茶经》。
+
+                武汉是辛亥革命首义之地，被誉为"首义之城"。黄鹤楼、古琴台、归元寺等古迹见证着湖北悠久的历史。
+                
+                武当山古建筑群被列为世界文化遗产，神农架被列入世界自然遗产名录，彰显湖北深厚的文化底蕴。</p>
+
+            <br>
+            <p>传统饮食：湖北菜又称鄂菜，是中国十大菜系之一，以淡水鱼鲜和蒸菜煨汤著称，讲究鲜、嫩、柔、滑、爽。
+
+                武汉热干面、三鲜豆皮、武昌鱼；荆州鱼糕、公安牛肉；沔阳三蒸、恩施土家腊肉...每一道美食都承载着湖北人的智慧与情怀。
+                
+                "过早"是武汉特有的早餐文化，品种之丰富堪称全国之最，展现了湖北人对生活的热爱。</p>
+
+            <br>
+            <p>现代发展：湖北是长江经济带核心区域，武汉作为国家中心城市，光谷科技创新大走廊引领高质量发展。
+
+                三峡工程是世界上最大的水利枢纽工程，汉十高铁串联起湖北黄金旅游线路，现代化交通网络四通八达。
+                
+                从传统工业基地到科技创新高地，湖北正以"建成支点、走在前列"为目标，谱写新时代高质量发展新篇章。</p>
+            
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 湖北之旅 - 探索荆楚大地，品味长江文明</p>
+    </footer>
+</body>
+</html>
