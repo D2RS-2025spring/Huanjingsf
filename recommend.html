@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北旅游推荐 - 探索荆楚大地</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        nav {
+            background-color: #2c3e50;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0.5rem 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .city-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            transition: transform 0.3s;
+        }
+
+        .city-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .city-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .city-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .city-tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .city-content {
+            display: flex;
+            padding: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .city-img {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-right: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .city-img img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .city-card:hover .city-img img {
+            transform: scale(1.05);
+        }
+
+        .city-desc {
+            width: 100%;
+        }
+
+        .city-desc p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .city-desc ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .city-desc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .city-desc strong {
+            color: #e74c3c;
+        }
+        
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .attraction-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .attraction-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .attraction-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .attraction-card:hover .attraction-img img {
+            transform: scale(1.05);
+        }
+        
+        .attraction-info {
+            padding: 1rem;
+        }
+        
+        .attraction-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .attraction-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .city-img {
+                width: 40%;
+                margin-right: 1.5rem;
+                margin-bottom: 0;
+            }
+            
+            .city-desc {
+                width: calc(60% - 1.5rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">湖北之旅</div>
+        <div class="slogan">探索荆楚大地，品味长江文明</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="recommend.html" class="active">旅游推荐</a></li>
+            <li><a href="food.html">特色美食</a></li>
+            <li><a href="forum.html">交流大厅</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section class="section">
+            <h1 class="section-title">湖北旅游推荐</h1>
+            <p>湖北旅游资源丰富多样，从世界级水利工程到原始森林，从历史名城到现代都市，每个城市都有其独特魅力。以下是湖北主要旅游城市的详细介绍：</p>
+            
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>武汉</h3>
+                    <div class="city-tag">江城 | 首义之城 | 大学之城</div>
+                </div>
+                <div class="city-content">
+                    <div class="city-img">
+                        <img src="https://pic.rmb.bdstatic.com/bjh/240318/events/a9dde9fb024f30b09d61055a01a96c897162.jpeg@h_1280" alt="武汉">
+                    </div>
+                    <div class="city-desc">
+                        <p>武汉是湖北省省会，长江与汉江在此交汇，形成武昌、汉口、汉阳三镇鼎立的格局。作为国家历史文化名城，武汉有着3500多年的建城史。</p>
+                        <p><strong>推荐景点：</strong></p>
+                        <ul>
+                            <li><strong>黄鹤楼</strong>：江南三大名楼之一，登楼可俯瞰长江大桥和武汉三镇美景</li>
+                            <li><strong>东湖生态旅游风景区</strong>：中国最大的城中湖，春季樱花、夏季荷花美不胜收</li>
+                            <li><strong>湖北省博物馆</strong>：珍藏有曾侯乙编钟、越王勾践剑等国家级文物</li>
+                            <li><strong>户部巷</strong>：武汉最具特色的老街区，汇聚各类传统小吃</li>
+                        </ul>
+                        <p><strong>最佳旅游季节：</strong>春秋两季（3-5月，9-11月）</p>
+                        <p><strong>特色美食：</strong>热干面、武昌鱼、豆皮、鸭脖、汤包</p>
+                        
+                        <div class="attraction-grid">
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbbs/1911/08/c19/177766564_1573209029159.jpg" alt="黄鹤楼">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">黄鹤楼</h4>
+                                    <p class="attraction-desc">"天下江山第一楼"，武汉标志性建筑，登楼远眺长江美景。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://bpic.588ku.com/back_origin_min_pic/21/10/18/2d867b1ce1ab0987a1cd8e74755066fc.jpg" alt="东湖">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">东湖生态旅游区</h4>
+                                    <p class="attraction-desc">中国最大的城中湖，四季景色各异，樱花季尤为壮观。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.bd418bb5aaa82c0865ea7e9059024dec?rik=q%2b394yrbCO1bZA&riu=http%3a%2f%2fimg1.qunarzz.com%2ftravel%2fd1%2f1602%2faa%2f02cca2903c7461f7.jpg_r_680x382x95_8842563c.jpg&ehk=MvvT2qjQD5HwvuUEGqwLhRjDReyVIVeq7WkSQJCcNks%3d&risl=&pid=ImgRaw&r=0" alt="湖北省博物馆">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">湖北省博物馆</h4>
+                                    <p class="attraction-desc">馆藏文物24万余件，越王勾践剑、曾侯乙编钟为镇馆之宝。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>十堰·武当山</h3>
+                    <div class="city-tag">道教圣地 | 世界文化遗产 | 武术之乡</div>
+                </div>
+                <div class="city-content">
+                    <div class="city-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.7c12b3b2acd9975c416d4f66d0125123?rik=jMMn5F%2fPLMnwwA&riu=http%3a%2f%2fhbrbapp.hubeidaily.net%2fce21de88-205a-426c-b0c5-eb93d3d11e78&ehk=6VNn43VyZ5LjKDZEcyfBd%2boR5VHx9BWjk4Csxe4RUVU%3d&risl=&pid=ImgRaw&r=0" alt="武当山">
+                    </div>
+                    <div class="city-desc">
+                        <p>武当山位于湖北省西北部，是中国著名的道教圣地，也是武当武术的发源地。1994年，武当山古建筑群被列入世界文化遗产名录。</p>
+                        <p><strong>推荐景点：</strong></p>
+                        <ul>
+                            <li><strong>金顶</strong>：武当山最高峰，可观赏"七十二峰朝大顶"的壮观景象</li>
+                            <li><strong>紫霄宫</strong>：武当山保存最完整的宫殿之一，明代建筑艺术的杰作</li>
+                            <li><strong>南岩宫</strong>：建在悬崖上的道教宫殿，以"龙头香"闻名</li>
+                            <li><strong>太子坡</strong>：武当山建筑群中最具特色的复真观，九曲黄河墙堪称一绝</li>
+                        </ul>
+                        <p><strong>最佳旅游季节：</strong>春秋两季（4-6月，9-11月）</p>
+                        <p><strong>特色体验：</strong>武当武术表演、道教文化体验、太极养生课程</p>
+                        
+                        <div class="attraction-grid">
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.51ee2049fa25a1224fa1317db026ba61?rik=88lN1k7TkAmQMA&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn15%2f560%2fw800h560%2f20181026%2fd71a-hmxrkzx1920022.jpg&ehk=VMy7CD7FPFebckeaePy0xvD6x%2bg0bCOvu3%2b3T8CcFi8%3d&risl=&pid=ImgRaw&r=0" alt="武当山金顶">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">金顶</h4>
+                                    <p class="attraction-desc">武当山最高处，铜铸鎏金殿宇，可俯瞰群山云海。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://img1.qunarzz.com/travel/d3/1412/73/73112337bf4dd53bcdb.jpg_r_720x480x95_b3053fe1.jpg" alt="紫霄宫">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">紫霄宫</h4>
+                                    <p class="attraction-desc">武当山保存最完整的宫殿，明代建筑艺术的典范。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="http://wdsdjxh.com/uploadfile/image/2020/0527/20200527101454_89129.jpg" alt="南岩宫">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">南岩宫</h4>
+                                    <p class="attraction-desc">悬崖上的道教宫殿，"龙头香"险峻壮观。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>宜昌·三峡</h3>
+                    <div class="city-tag">水电之都 | 长江三峡 | 屈原故里</div>
+                </div>
+                <div class="city-content">
+                    <div class="city-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.646b8a75473ce4af03234b64bb96a97a?rik=BNyOghhM9JLrXg&riu=http%3a%2f%2fimg.cjyun.org%2fa%2f10008%2f202207%2fd866c13a57f29c6260bb2697876e8e8e.jpeg&ehk=G2d7Kw1%2bXoLAifbytkUExRqrA%2fcCcHfDWhZdCdh3Q3I%3d&risl=&pid=ImgRaw&r=0" alt="三峡">
+                    </div>
+                    <div class="city-desc">
+                        <p>宜昌位于长江中上游交界处，是世界水电之都，三峡大坝和葛洲坝所在地。这里也是伟大爱国诗人屈原的故乡，楚文化的发祥地之一。</p>
+                        <p><strong>推荐景点：</strong></p>
+                        <ul>
+                            <li><strong>三峡大坝</strong>：世界上最大的水利枢纽工程，可参观坛子岭、185观景平台等</li>
+                            <li><strong>三峡人家</strong>：展示三峡地区传统民居和民俗文化的景区</li>
+                            <li><strong>清江画廊</strong>：八百里清江美如画，有"山水博物馆"之称</li>
+                            <li><strong>屈原故里</strong>：位于秭归县，可了解屈原生平和文化影响</li>
+                        </ul>
+                        <p><strong>最佳旅游季节：</strong>春秋两季（4-6月，9-11月）</p>
+                        <p><strong>特色体验：</strong>三峡游轮、土家族民俗表演、三峡大坝泄洪观景</p>
+                        
+                        <div class="attraction-grid">
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.3e988cb5bb092e463474132b907b5fff?rik=lu1aKl6RXCF73A&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn20%2f364%2fw2048h1516%2f20180808%2f98d9-hhkusku0109502.jpg&ehk=nMdj0L5L1dPtV4%2bpZ%2fujNb%2bMsxYk%2fNND7Z6LnT4RwHM%3d&risl=&pid=ImgRaw&r=0" alt="三峡大坝">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">三峡大坝</h4>
+                                    <p class="attraction-desc">世界最大水利工程，感受人类改造自然的伟大力量。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.939c8fd0e1fcac0442828fff25e3d1b4?rik=zfXHRqF9MZKANA&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn11%2f144%2fw1600h944%2f20180413%2fd7d8-fyzeyqc4921474.jpg&ehk=st5breZf9aw0x1H457HUHK9Qz8qu0kWJdaY69Gly%2fBg%3d&risl=&pid=ImgRaw&r=0" alt="三峡人家">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">三峡人家</h4>
+                                    <p class="attraction-desc">体验原生态的三峡民俗文化，感受巴楚风情。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://newbbs-fd.zol-img.com.cn/t_s1200x5000/g2/M00/0F/07/Cg-4WVVtQeuINOWqABHKSEs6T_4AAEhhQFrIQIAEcpg750.jpg" alt="清江画廊">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">清江画廊</h4>
+                                    <p class="attraction-desc">八百里清江美如画，山水相映成趣。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <div class="city-header">
+                    <h3>恩施</h3>
+                    <div class="city-tag">世界硒都 | 鄂西林海 | 土家风情</div>
+                </div>
+                <div class="city-content">
+                    <div class="city-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.e6a4bf41ed8aff3598cd22bebaa7e3f1?rik=iokM7K5fdVhEDA&riu=http%3a%2f%2ftr-osdcp.qunarzz.com%2ftr-osd-tr-space%2fimg%2fe6a4bf41ed8aff3598cd22bebaa7e3f1.jpg%3fver%3d1&ehk=TcV3QLKevwa9ZCv6JP%2fu2wslsNZmOfgrCvA2p8HXn%2fQ%3d&risl=&pid=ImgRaw&r=0" alt="神农架">
+                    </div>
+                    <div class="city-desc">
+                        <p>恩施州是湖北唯一的少数民族自治州，2015 年其土司遗址被列入世界文化遗产名录。这里拥有丰富的自然与文化资源，被誉为“鄂西明珠”。</p>
+                        <p><strong>推荐景点：</strong></p>
+                        <ul>
+                            <li><strong>恩施大峡谷</strong>：奇峰峡谷瀑布，自然奇观汇聚</li>
+                            <li><strong>女儿城</strong>：土家文化大观园，浪漫风情女儿城</li>
+                            <li><strong>腾龙洞</strong>：探秘腾龙古洞，领略自然之神奇</li>
+                            <li><strong>地心谷</strong>：嶂谷奇观惊世，古道文化悠长</li>
+                        </ul>
+                        <p><strong>最佳旅游季节：</strong>春季赏花（3-5月），秋季赏红叶（9-11月）</p>
+                        <p><strong>特色体验：</strong>土家女儿会、贡茶制作术、吊脚楼研学</p>
+                        
+                        <div class="attraction-grid">
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.272a37f795105350ff7add99159d0ee1?rik=RD8IFfR85Dt8mw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn20123%2f762%2fw1000h562%2f20190523%2f04a9-hxntqyx9514809.jpg&ehk=jVEcvc7aXauDUNuqZGBAPv%2b17l2kyQ%2bJXvS2QwOFmEc%3d&risl=&pid=ImgRaw&r=0" alt="恩施大峡谷">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">恩施大峡谷</h4>
+                                    <p class="attraction-desc">喀斯特奇观，恩施大峡谷美如仙境画卷。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://img1.qunarzz.com/travel/d5/1807/ac/62f1517cd1ff32b5.jpg" alt="女儿城">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">女儿城</h4>
+                                    <p class="attraction-desc">逛恩施女儿城，赏吊脚楼群，品土家女儿会风情。</p>
+                                </div>
+                            </div>
+                            <div class="attraction-card">
+                                <div class="attraction-img">
+                                    <img src="https://img1.qunarzz.com/travel/d9/1809/a1/f4dd756d544993b5.jpg_r_480x360x95_2671f3d5.jpg" alt="腾龙洞">
+                                </div>
+                                <div class="attraction-info">
+                                    <h4 class="attraction-title">腾龙洞</h4>
+                                    <p class="attraction-desc">腾龙洞景震撼，地质奇观与土家风情共赏。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+        <div class="city-card">
+        <div class="city-header">
+            <h3>神农架</h3>
+            <div class="city-tag">世界自然遗产 | 华中屋脊 | 野人传说</div>
+        </div>
+        <div class="city-content">
+            <div class="city-img">
+                <img src="https://ts1.tc.mm.bing.net/th/id/R-C.331336df418c7099dc5c16633ebee82f?rik=selTY1y0l0wLlw&riu=http%3a%2f%2fn.sinaimg.cn%2ffront%2f400%2fw1200h800%2f20181101%2fQfvJ-hnfikve4093418.jpg&ehk=BTzswGjkdvy9n9dhtFQka21Ez0P2RABEURkgen%2bN3sQ%3d&risl=&pid=ImgRaw&r=0" alt="神农架">
+            </div>
+            <div class="city-desc">
+                <p>神农架林区是中国唯一以"林区"命名的行政区划，2016年被列入世界自然遗产名录。这里保存有完整的北亚热带森林生态系统，被誉为"华中屋脊"。</p>
+                <p><strong>推荐景点：</strong></p>
+                <ul>
+                    <li><strong>神农顶</strong>：海拔3105米，是华中地区最高点，可观赏云海奇观</li>
+                    <li><strong>大九湖</strong>：高山湿地公园，有"华中呼伦贝尔"之称</li>
+                    <li><strong>天生桥</strong>：喀斯特地貌形成的天然石桥，周围瀑布飞流</li>
+                    <li><strong>神农坛</strong>：祭祀炎帝神农氏的场所，千年古杉蔚为壮观</li>
+                </ul>
+                <p><strong>最佳旅游季节：</strong>夏季避暑（6-8月），秋季赏红叶（9-10月）</p>
+                <p><strong>特色体验：</strong>原始森林徒步、金丝猴观察、高山湿地观光</p>
+                
+                <div class="attraction-grid">
+                    <div class="attraction-card">
+                        <div class="attraction-img">
+                            <img src="https://qcloud.dpfile.com/pc/K2g2LD7MTgdrLwWoQ5uZZlKqAX8nSaWQAO7aNceMr52dxBVf06W34QcwP5N5Ww6B.jpg" alt="神农顶">
+                        </div>
+                        <div class="attraction-info">
+                            <h4 class="attraction-title">神农顶</h4>
+                            <p class="attraction-desc">华中地区最高峰，云海日出景观壮丽。</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card">
+                        <div class="attraction-img">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.38fbbc7d26be490227c2936e4bc33548?rik=pc9TCX1033dlgw&riu=http%3a%2f%2fimg.pconline.com.cn%2fimages%2fupload%2fupc%2ftx%2fphotoblog%2f1609%2f21%2fc8%2f27302274_1474438737147.jpg&ehk=wbLX1Q4ebDnVLlcFOl5y31YJ4pivgcWCHvgQpMHKH7o%3d&risl=&pid=ImgRaw&r=0" alt="大九湖">
+                        </div>
+                        <div class="attraction-info">
+                            <h4 class="attraction-title">大九湖</h4>
+                            <p class="attraction-desc">高山湿地公园，被誉为"华中呼伦贝尔"。</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card">
+                        <div class="attraction-img">
+                            <img src="https://img1.baidu.com/it/u=1367111417,3129098047&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=771" alt="金丝猴">
+                        </div>
+                            <div class="attraction-info">
+                                <h4 class="attraction-title">金丝猴观察</h4>
+                                <p class="attraction-desc">近距离观察珍稀的金丝猴，了解保护工作。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+<div class="city-card">
+    <div class="city-header">
+        <h3>襄阳</h3>
+        <div class="city-tag">历史文化名城 | 华夏第一城池 | 南船北马通衢</div>
+    </div>
+    <div class="city-content">
+        <div class="city-img">
+            <img src="https://p26.toutiaoimg.com/origin/tos-cn-i-qvj2lq49k0/68f25c0db6fd4509b41d94593ba9f241" alt="襄阳">
+        </div>
+        <div class="city-desc">
+            <p>湖北襄阳，湖北西北部汉江中游名城。历史上为兵家必争之地，三国文化重镇，金庸笔下的侠义之城。拥有千年古城墙，现为重要现代制造业基地。。</p>
+            <p><strong>推荐景点：</strong></p>
+            <ul>
+                <li><strong>古隆中</strong>：智圣隐居地，三顾茅庐故事在此流传千古</li>
+                <li><strong>唐城</strong>：仿唐建筑主题公园，影视取景地，沉浸式文化体验</li>
+                <li><strong>小北门码头</strong>：小北门码头畔，赏古城风光品岁月情</li>
+                <li><strong>习家池</strong>：汉代名园历史悠久，园林建筑尽显古朴典雅</li>
+            </ul>
+            <p><strong>最佳旅游季节：</strong>春季（3-5月），秋季赏红叶（9-11月）</p>
+            <p><strong>特色体验：</strong>古城古迹游、郊野徒步游、唐城影视游</p>
+            
+            <div class="attraction-grid">
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://img95.699pic.com/photo/50079/3356.jpg_wh860.jpg" alt="古隆中">
+                    </div>
+                    <div class="attraction-info">
+                        <h4 class="attraction-title">古隆中</h4>
+                        <p class="attraction-desc">智圣躬耕故地，三顾茅庐典故源，三国文化秘境。</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.38166878a1abfa2bcdf4f418ec7cccd3?rik=DW93tMdoh7Ipqw&riu=http%3a%2f%2fpuui.qpic.cn%2fvpic_cover%2fi3345wd127k%2fi3345wd127k_hz.jpg%2f1280&ehk=QNAU3dHtxk%2b0n0TZIjXGRFjOYfmVhhhJFW%2btHc3%2f%2fVY%3d&risl=&pid=ImgRaw&r=0" alt="唐城">
+                    </div>
+                    <div class="attraction-info">
+                        <h4 class="attraction-title">唐城</h4>
+                        <p class="attraction-desc">盛唐风貌再现，唐城演绎千年繁华盛景。</p>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <div class="attraction-img">
+                        <img src="https://p3-sdbk2-media.byteimg.com/tos-cn-i-xv4ileqgde/7a87dfe1df644d0f976a89bc23222c9e~tplv-xv4ileqgde-image.image" alt="习家池">
+                    </div>
+                    <div class="attraction-info">
+                        <h4 class="attraction-title">习家池</h4>
+                        <p class="attraction-desc">东汉古园习家池，山水清幽尽显园林魅力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+    <footer>
+        <p>&copy; 2025 湖北之旅 - 探索荆楚大地，品味长江文明</p>
+        <p>联系我们：1730277638@qq.com</p>
+    </footer>
+</body>
+</html>
